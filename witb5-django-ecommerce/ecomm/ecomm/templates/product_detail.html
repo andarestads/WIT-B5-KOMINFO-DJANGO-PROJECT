@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<!--Main layout-->
+
+<br>
+<br>
+
+{% include 'contentnavbar.html' %}
+
+<main class="mt-5 pt-4">
+    <div class="container mt-5">
+        <!--Grid row-->
+        <div class="row">
+            <div class="col-md-6">
+            <!--Grid column-->
+                <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button
+                                type="button"
+                                data-mdb-target="#carouselExampleCaptions"
+                                data-mdb-slide-to="0"
+                                class="active"
+                                aria-current="true"
+                                aria-label="Slide 1"
+                        ></button>
+                        <button
+                                type="button"
+                                data-mdb-target="#carouselExampleCaptions"
+                                data-mdb-slide-to="1"
+                                aria-label="Slide 2"
+                        ></button>
+                        <button
+                                type="button"
+                                data-mdb-target="#carouselExampleCaptions"
+                                data-mdb-slide-to="2"
+                                aria-label="Slide 3"
+                        ></button>
+                    </div>
+                    <div class="carousel-inner" >
+                        <div class="carousel-item active" style="height:600px">
+                            <img src="{{ object.gambar.url }}" class="d-block w-15" alt=""/>
+                        </div>
+                        <div class="carousel-item" style="height:600px">
+                            <img src="{{ object.gambar_1.url }}" class="d-block w-15" alt=""/>
+                        </div>
+                        <div class="carousel-item" style="height:600px">
+                            <img src="{{ object.gambar_2.url }}" class="d-block w-15" alt=""/>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+                <!--Kategori-->
+                <div class="right-side-pro-detail border p-3 m-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a href="">
+                                <span class="m-0 p-2">
+                                <a href="http://127.0.0.1:8000/" ></a>Home</span>
+                            </a> 
+                            >
+                            <a href="">
+                                <span class="m-0 p-2">Categories</span>
+                            </a> 
+                            >
+                            <a href="">
+                                <span class="m-0 p-2">{{ object.kategori }}</span>
+                            </a> 
+                        </div>
+                        <div class="col-lg-12">
+                            <strong><p class="m-0 p-2" style="font-size: 20px;">{{ object.nama_produk }}</p></strong>                 
+                        </div>
+                <!--Label-->
+                <div class="p-4">
+                    <div class="mb-3">
+                        <a href="">
+                            <span class="badge bg-dark me-1">{{ object.get_kategori_display }}</span>
+                        </a>
+                        {% if object.label == 'NEW' %}
+                        <a href="">
+                            <span class="badge bg-{{ object.get_label_display }} me-1">New</span>
+                        </a>
+                        {% elif object.label == 'SALE' %}
+                        <a href="">
+                            <span class="badge bg-{{ object.get_label_display }} me-1">Sale</span>
+                        </a>
+                        {% else %}
+                        <a href="">
+                            <span class="badge bg-{{ object.get_label_display }} me-1">Bestseller</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <!--Harga & Harga Diskon-->
+                    <p class="lead">
+                        {% if object.harga_diskon %}
+                        <span class="me-1">
+                            <del>${{ object.harga }}</del>
+                        </span>
+                        <span>${{ object.harga_diskon }}</span>
+                        {% else %}
+                        <span>${{ object.harga }}</span>
+                        {% endif %}
+                    </p>
+                <!--Rating-->
+                <div class="p-0">
+                    <div class="mb-3">
+                    <ul class="list-inline small">
+                        <span class="list-inline-item m-0">
+                        {% if object.rated == '5' %}
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-solid fa-star"></span>                                                    
+                        {% elif object.rated == '4' %}
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-regular fa-star"></span>       
+                        {% elif object.rated == '3' %}
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span> 
+                        {% elif object.rated == '2' %}
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        {% else object.rated== '1'}
+                        <span class="fa-solid fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>
+                        <span class="fa-regular fa-star"></span>                         
+                        {% endif %}
+                        Rating: {{ object.rated }}</span>                                               
+                    </ul>
+
+                    <strong><p style="font-size: 20px;">Deskripsi</p></strong><p>{{ object.deskripsi }}</p>
+                    
+                    <strong><p style="font-size: 20px;">Spesifikasi</p></strong><p>{{ object.spesifikasi }}</p>
+                    
+                    <a href="{{ object.get_add_to_cart_url }}" class="btn btn-dark ms-1">
+                        Tambahkan ke keranjang
+                        <i class="fas fa-shopping-cart ms-1"></i>
+                    </a>
+                    <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-black ms-1" >
+                        Kurangi keranjang
+                        <i class="fas fa-shopping-cart ms-1"></i>
+                    </a>
+                </div>
+                <!--Content-->
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+        <!--Comment-->
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample"><strong>Komentar</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nama">
+            <br>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Isi"></textarea>
+            <br>
+            <button type="button" class="btn btn-dark">Submit</button>
+        </div>
+        <div class="card">
+            <div class="card-body">
+              <!-- Hasil Komentar -->
+            </div>
+          </div>
+    </div>
+        <hr />
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+            <!--Grid column-->
+            <div class="col-md-6 text-center">
+                <h4 class="my-4 h-4">More Product</h4>
+
+                <p>Siap maksimalkan harimu dengan Galaxy devices terbaru dari Samsung</p>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+ 
+        <!--Grid row-->
+        <div class="row">
+                        <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="" />
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <img src="https://img.global.news.samsung.com/id/wp-content/uploads/2023/05/08085344/SM-A245_Galaxy-A24-LTE_Light-Green_Back-L30-1024x683.jpg" class="img-fluid" alt="" />
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="" />
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+</main>
+<!--Main layout-->
+{% endblock content%}

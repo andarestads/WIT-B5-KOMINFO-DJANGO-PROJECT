@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "carousel.html" %}
+
+<main>
+    <div class="container">
+
+      <h1>{{ cats }}</h1>
+<ul>
+      {% for produk in category_produk %}
+      <li><a href="{% url 'home-produk-list' %}">{{ produk.nama_produk }}></a></li>
+      - {{ produk.kategori }}
+      {% endfor %}
+</ul>
+
+        <!-- Link Kategori --> 
+    </div>
+</main>
+<!--Main layout--> 
+
+{% endblock content %}
