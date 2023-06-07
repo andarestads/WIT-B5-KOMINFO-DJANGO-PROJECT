@@ -11,3 +11,7 @@ pip install django-jazzmin
 superuser
 user: witb5
 password: 12345678
+
+database:
+user: witb5
+password: 1234
